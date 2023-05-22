@@ -3,7 +3,7 @@
 require('dotenv').config();
 const { sequelizeDatabase } = require('./src/auth/models/index');
 const { start } = require('./src/auth/server');
-const PORT = process.env.port;
+const PORT = process.env.port || 3002;
 
 sequelizeDatabase.sync()
   .then(() => {

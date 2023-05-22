@@ -3,11 +3,11 @@
 //import resources
 require('dotenv').config();
 const express = require('express');
-const bcrypt = require('bcrypt');
-const base64 = require('base-64');
-const { Sequelize, DataTypes } = require('sequelize');
 const notFound = require('./error-handlers/404');
 const errorHandler = require('./error-handlers/500');
+// const bcrypt = require('bcrypt');
+// const base64 = require('base-64');
+// const { Sequelize, DataTypes } = require('sequelize');
 
 //singleton express for app
 const app = express();
