@@ -3,7 +3,7 @@
 require('dotenv').config();
 const { sequelizeDatabase } = require('./src/auth/models/index');
 const { start } = require('./src/auth/server');
-const PORT = process.env.port || 3002;
+const PORT = process.env.PORT || 3002; //TODO: find out why 3001 isn't working
 
 sequelizeDatabase.sync()
   .then(() => {
