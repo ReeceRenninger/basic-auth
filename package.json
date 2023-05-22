@@ -1,4 +1,19 @@
 {
+  "name": "basic-auth",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "NODE_ENV=test jest --verbose --coverage",
+    "test-watch": "NODE_ENV=test jest --watchAll --verbose --coverage",
+    "init:config": "sequelize init:config",
+    "db:create": "sequelize db:create"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "base-64": "^1.0.0",
     "bcrypt": "^5.1.0",
@@ -10,16 +25,6 @@
     "sequelize": "^6.31.1",
     "sequelize-cli": "^6.6.0",
     "sqlite3": "^5.1.6"
-  },
-  "name": "basic-auth",
-  "description": "",
-  "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
+ 
 }
