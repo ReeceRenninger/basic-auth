@@ -18,8 +18,8 @@ router.post('/signup', async (req, res, next) => {
     const record = await Users.create(req.body);
     res.status(200).send(record);
   } catch (error) {
-    // res.status(403).send('Error while creating a user');
-    next(error.message);
+    res.status(403).send('Error while creating a user');
+    // next(error.message);
   }
 });
 
