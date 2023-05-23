@@ -16,8 +16,7 @@ const userModel = (sequelize, DataTypes) => {
   return Users;
 };
 
-
-// const Users = sequelizeDatabase.define('User', {
+// const Users = sequelizeDatabase.define('Users', {
 //   username: {
 //     type: DataTypes.STRING,
 //     allowNull: false,

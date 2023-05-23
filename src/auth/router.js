@@ -3,27 +3,16 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const base64 = require('base-64');
 const basicAuth = require('./middleware/basic');
 const { Users } = require('./models/index');
 
-//Process FORM input and put he data on req.body
-//this will be useful in the future to process form input and add to req.body
-router.use(express.urlencoded({ extended: true }));
+router.post('/signup', async (req, res) => {
 
-router.post('/signup', async (req, res, next) => {
   try {
-    //modified this to be closer to lab demo than the starter code, since starter code wasn't working 
-    const { username, password } = req.body;
-    const encryptedPassword = await bcrypt.hash(req.body.password, 5);
-    let newUser = await Users.create({
-      username,
-      password: encryptedPassword,
-    });
-    res.status(200).send(newUser);
-  } catch (error) {
-    res.status(403).send('Error while creating a user');
-  }
+    req.body.password = await bcrypt.hash(req.body.password, 5);
+    const record = await Users.create(req.body);
+    res.status(200).json(record);
+  } catch (e) { res.status(403).send('Error Creating User'); }
 });
 
 router.post('/signin', basicAuth, (req, res) => {
