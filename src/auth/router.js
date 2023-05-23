@@ -13,8 +13,8 @@ router.use(express.urlencoded({ extended: true }));
 
 router.post('/signup', async (req, res, next) => {
   try {
+    //modified this to be closer to lab demo than the starter code, since starter code wasn't working 
     const { username, password } = req.body;
-    console.log('signup route is here');
     const encryptedPassword = await bcrypt.hash(req.body.password, 5);
     let newUser = await Users.create({
       username,
