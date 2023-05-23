@@ -8,9 +8,9 @@ const basicAuth = require('./middleware/basic');
 const { Users } = require('./models/index');
 
 //Process FORM input and put he data on req.body
+//this will be useful in the future to process form input and add to req.body
 router.use(express.urlencoded({ extended: true }));
 
-//!! BRING THE SIGN UP AND SIGN UP ROUTER.POST HERE.
 router.post('/signup', async (req, res, next) => {
   try {
     const { username, password } = req.body;

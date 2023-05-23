@@ -8,11 +8,13 @@ const basicAuth = async (req, res, next) => {
   let { authorization } = req.headers;
   
   // 1. we isolate the encoded part of the string - Basic UnlhbjpwYXNz
+  // we split at the space and grab the index position [1].
   let authString = authorization.split(' ')[1];
 
   // 2. then we have to decode the authstring
   let decodedAuthString = base64.decode(authString);
-  console.log('decodedAuthString:', decodedAuthString);
+  // use console if needed for debugging.
+  // console.log('decodedAuthString:', decodedAuthString);
 
   // 3. Isolate the password FROM the decoded string in step two
   let [username, password] = decodedAuthString.split(':');
@@ -31,6 +33,6 @@ const basicAuth = async (req, res, next) => {
     next('Not authorized (user doesn\'t exist in DB)');
   }
   next();
-}
+};
 
 module.exports = basicAuth;
