@@ -7,7 +7,6 @@ const basicAuth = require('./middleware/basic');
 const { Users } = require('./models/index');
 
 router.post('/signup', async (req, res) => {
-
   try {
     req.body.password = await bcrypt.hash(req.body.password, 5);
     const record = await Users.create(req.body);
@@ -16,7 +15,7 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/signin', basicAuth, (req, res) => {
-  // all the authorization functionality is in the basic.js
+  // all the authorization functionality is in the basic/index.js
   try {
     res.status(200).send(req.user);
   } catch (error) {

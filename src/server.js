@@ -12,11 +12,11 @@ const app = express();
 
 //json processor
 app.use(express.json());
-app.use(cors);
-app.use(authRouter);
 //Process FORM input and put he data on req.body
 //this will be useful in the future to process form input and add to req.body
 app.use(express.urlencoded({ extended: true }));
+app.use(cors);
+app.use(authRouter);
 //error handlers
 app.use('*', notFound);
 app.use(errorHandler);

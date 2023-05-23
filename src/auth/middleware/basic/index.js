@@ -11,10 +11,10 @@ const { Users } = require('../../models/index');
 
 const basicAuth = async (req, res, next) => {
   
-  let basicHeaderParts = req.headers.authorization.split(' ');  // ['Basic', 'am9objpmb28=']
-  let encodedString = basicHeaderParts.pop();  // am9objpmb28=
-  let decodedString = base64.decode(encodedString); // "username:password"
-  let [username, password] = decodedString.split(':'); // username, password
+  let basicHeaderParts = req.headers.authorization.split(' ');  
+  let encodedString = basicHeaderParts.pop();  
+  let decodedString = base64.decode(encodedString); 
+  let [username, password] = decodedString.split(':'); 
 
   try {
     const user = await Users.findOne({ where: { username: username } });
