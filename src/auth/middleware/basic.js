@@ -1,1 +1,36 @@
 'use strict';
+
+const bcrypt = require('bcrypt');
+const base64 = require('base-64');
+const { Users } = require('../models/index');
+
+const basicAuth = async (req, res, next) => {
+  let { authorization } = req.headers;
+  
+  // 1. we isolate the encoded part of the string - Basic UnlhbjpwYXNz
+  let authString = authorization.split(' ')[1];
+
+  // 2. then we have to decode the authstring
+  let decodedAuthString = base64.decode(authString);
+  console.log('decodedAuthString:', decodedAuthString);
+
+  // 3. Isolate the password FROM the decoded string in step two
+  let [username, password] = decodedAuthString.split(':');
+  console.log('password:', password);
+
+  let user = await Users.findOne({where: { username }});
+  if (user){
+    let validUser = await bcrypt.compare(password, user.password);
+    if(validUser){
+      req.user = user;
+      next();
+    } else {
+      next('Not authorized (incorrect password)');
+    }
+  } else {
+    next('Not authorized (user doesn\'t exist in DB)');
+  }
+  next();
+}
+
+module.exports = basicAuth;

@@ -21,6 +21,10 @@ const userModel = (sequelize, DataTypes) => {
   });
   return Users;
 };
+
+// userModel.beforeCreate((user) => {
+//   console.log('our user before being added to DB', user);
+// });
 // const Users = sequelizeDatabase.define('User', {
 //   username: {
 //     type: DataTypes.STRING,

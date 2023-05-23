@@ -19,6 +19,7 @@ app.use(express.json());
 app.use(cors);
 app.use(authRouter);
 
+//error handlers
 app.use('*', notFound);
 app.use(errorHandler);
 
