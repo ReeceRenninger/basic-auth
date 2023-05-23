@@ -7,7 +7,7 @@ const base64 = require('base-64');
 const { Users } = require('./models/index');
 
 //Process FORM input and put he data on req.body
-// router.use(express.urlencoded({ extended: true }));
+router.use(express.urlencoded({ extended: true }));
 
 //!! BRING THE SIGN UP AND SIGN UP ROUTER.POST HERE.
 router.post('/signup', async (req, res, next) => {
@@ -35,32 +35,32 @@ router.post('/signup', async (req, res, next) => {
     - Pull username and password from that array
 **/
 
-router.post('/signin', async (req, res) => {
-  let basicHeaderParts = req.headers.authorization.split(' '); // ['Basic', 'al;djf;adjfa']
-  let encodedString = basicHeaderParts.pop(); // al;djf;adjfa
-  let decodedString = base64.decode(encodedString); // "username: password"
-  let [username, password] = decodedString.split(':'); // username, password
+// router.post('/signin', async (req, res) => {
+//   let basicHeaderParts = req.headers.authorization.split(' '); // ['Basic', 'al;djf;adjfa']
+//   let encodedString = basicHeaderParts.pop(); // al;djf;adjfa
+//   let decodedString = base64.decode(encodedString); // "username: password"
+//   let [username, password] = decodedString.split(':'); // username, password
 
-  //!! took this comment from demo code
-  /*
-    Now that we finally have username and password, let's see if it's valid
-    1. Find the user in the database by username
-    2. Compare the plaintext password we now have against the encrypted password in the db
-       - bcrypt does this by re-encrypting the plaintext password and comparing THAT
-    3. Either we're valid or we throw an error
-  */
-  try {
-    const user = await Users.findOne({ where: { username: password } });
-    const valid = await bcrypt.compare(password, user.password);
-    if (valid) {
-      res.status(200).json(user);
-    } else {
-      throw new Error('INVALID USER');
-    }
-  } catch (error) {
-    res.status(403).send('INVALID LOGIN');
-  }
-});
+//   //!! took this comment from demo code
+//   /*
+//     Now that we finally have username and password, let's see if it's valid
+//     1. Find the user in the database by username
+//     2. Compare the plaintext password we now have against the encrypted password in the db
+//        - bcrypt does this by re-encrypting the plaintext password and comparing THAT
+//     3. Either we're valid or we throw an error
+//   */
+//   try {
+//     const user = await Users.findOne({ where: { username: password } });
+//     const valid = await bcrypt.compare(password, user.password);
+//     if (valid) {
+//       res.status(200).json(user);
+//     } else {
+//       throw new Error('INVALID USER');
+//     }
+//   } catch (error) {
+//     res.status(403).send('INVALID LOGIN');
+//   }
+// });
 
 
 module.exports = router;
