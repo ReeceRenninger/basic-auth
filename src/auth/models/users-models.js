@@ -1,12 +1,6 @@
 'use strict';
-
-// const { DataTypes } = require('sequelize');
-// const { sequelizeDatabase } = require('.');
-
-// const bcrypt = require('bcrypt');
-// const { DataTypes } = require('sequelize');
-
 // create the sequelize model
+// modified this model while working with TAs to try and fix the bug
 const userModel = (sequelize, DataTypes) => {
   const Users = sequelize.define('Users', {
     username: {
@@ -22,9 +16,7 @@ const userModel = (sequelize, DataTypes) => {
   return Users;
 };
 
-// userModel.beforeCreate((user) => {
-//   console.log('our user before being added to DB', user);
-// });
+
 // const Users = sequelizeDatabase.define('User', {
 //   username: {
 //     type: DataTypes.STRING,

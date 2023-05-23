@@ -4,6 +4,11 @@ const bcrypt = require('bcrypt');
 const base64 = require('base-64');
 const { Users } = require('../models/index');
 
+// middleware discussed in class that can interact with user BEFORE creating the record in the DB, I'm not sure how to use this or where.
+// userModel.beforeCreate((user) => {
+//   console.log('our user before being added to DB', user);
+// });
+
 const basicAuth = async (req, res, next) => {
   let { authorization } = req.headers;
   
